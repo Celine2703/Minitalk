@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: molich <molich@student.42.fr>              +#+  +:+       +#+        */
+/*   By: celine <celine@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 17:03:17 by molich            #+#    #+#             */
-/*   Updated: 2022/09/09 17:57:30 by molich           ###   ########.fr       */
+/*   Updated: 2022/09/11 11:24:12 by celine           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,4 @@
 # include <stdlib.h>
 # include <signal.h>
 
-I LOVE YOU !!!!
 #endif

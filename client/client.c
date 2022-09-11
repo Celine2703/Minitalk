@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: molich <molich@student.42.fr>              +#+  +:+       +#+        */
+/*   By: celine <celine@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 17:10:00 by molich            #+#    #+#             */
-/*   Updated: 2022/09/09 17:43:26 by molich           ###   ########.fr       */
+/*   Updated: 2022/09/11 12:47:24 by celine           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,20 @@
 
 int main(int argc, char **argv)
 {
-    sigset_t    set;
     if (argc != 3)
         return (0);
-    sigemptyset(&set);
-    sigaddset(&set, SIGUSR1);
-    kill(atoi(argv[1]), 1);
+    kill(atoi(argv[1]), SIGUSR2);
+    sleep(1);
+    kill(atoi(argv[1]), SIGUSR1);
+    sleep(1);
+    kill(atoi(argv[1]), SIGUSR1);
+    sleep(1);
+    kill(atoi(argv[1]), SIGUSR1);
+    sleep(1);
+    kill(atoi(argv[1]), SIGUSR1);
+    sleep(1);
+    kill(atoi(argv[1]), SIGUSR2);
+    sleep(1);
+    kill(atoi(argv[1]), SIGUSR2);
+    sleep(1);
 }
-
-sigghandler int signum
-if signum == SIGUSR1
-    char +=1
-
-chqr *=2;
