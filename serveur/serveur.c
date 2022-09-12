@@ -6,7 +6,7 @@
 /*   By: celine <celine@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 16:58:07 by molich            #+#    #+#             */
-/*   Updated: 2022/09/12 14:46:15 by celine           ###   ########.fr       */
+/*   Updated: 2022/09/12 15:00:54 by celine           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int main ()
             sigaction(SIGUSR2, &sig, NULL);
             pause();
         }
-        printf("%c\n", c);
         str[cpt++] = c;
     }
     printf("%s\n", str);

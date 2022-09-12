@@ -6,7 +6,7 @@
 /*   By: celine <celine@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 17:10:00 by molich            #+#    #+#             */
-/*   Updated: 2022/09/12 10:49:45 by celine           ###   ########.fr       */
+/*   Updated: 2022/09/12 14:57:30 by celine           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,5 @@ int main(int argc, char **argv)
         send_nbr(atoi(argv[1]), (int)(argv[2][i]), 0);
         i++;
     }
+    send_nbr(atoi(argv[1]), (int)(argv[2][i]), 0);
 }
