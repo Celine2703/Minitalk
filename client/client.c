@@ -6,27 +6,27 @@
 /*   By: celine <celine@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 17:10:00 by molich            #+#    #+#             */
-/*   Updated: 2022/09/12 14:57:30 by celine           ###   ########.fr       */
+/*   Updated: 2022/09/12 18:38:58 by celine           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "client.h"
 
-void    send_nbr(int pib, int nb, int cpt)
+void    send_nbr(int pid, int nb, int cpt)
 {
     if (cpt == 8)
         return ;
     else if (nb % 2 == 0)
     {
-        send_nbr(pib, nb / 2, ++cpt);
-        usleep(130);
-        kill(pib, SIGUSR1);
+        send_nbr(pid, nb / 2, ++cpt);
+        usleep(100);
+        kill(pid, SIGUSR1);
     }
     else if (nb % 2 == 1)
     {
-        send_nbr(pib, nb / 2, ++cpt);
-        usleep(130);
-        kill(pib, SIGUSR2);
+        send_nbr(pid, nb / 2, ++cpt);
+        usleep(100);
+        kill(pid, SIGUSR2);
     }
 }
 

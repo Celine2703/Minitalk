@@ -6,7 +6,7 @@
 /*   By: celine <celine@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 16:58:07 by molich            #+#    #+#             */
-/*   Updated: 2022/09/12 15:00:54 by celine           ###   ########.fr       */
+/*   Updated: 2022/09/12 18:37:49 by celine           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,3 @@ void    handler(int signum)
     else if (signum == SIGUSR2)
         c = 2 * c + 1;
 }
-
-/*char   sent_sig(int signum)
-{
-    char    c;
-    
-    c = 0;
-    if (signum == SIGUSR1)
-        c = 2 * c + 0;
-    else if (signum == SIGUSR2)
-        c = 2 * c + 1;
-    return (c); 
-}*/
