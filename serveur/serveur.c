@@ -17,14 +17,23 @@ int main ()
     sigset_t    set;
     struct sigaction    sig;
     int nb;
-    char    str[100];
+    char    *str;
     c = 0;
     printf("PID = %u\n\n",getpid());
     sigemptyset(&set);
     sigaddset(&set, SIGUSR1);
     sig.sa_handler = handler;
-    int cpt = 0;
-    c = 1;
+    int cpt;
+    c = 0;
+    nb = 8;
+    while (nb--)
+    {
+        sigaction(SIGUSR1, &sig, NULL);
+        sigaction(SIGUSR2, &sig, NULL);
+        pause();
+    }
+    str = malloc(sizeof(char) * (c + 1));
+    cpt = 0;
     while (c)
     {
         c = 0;
@@ -38,6 +47,7 @@ int main ()
         str[cpt++] = c;
     }
     printf("%s\n", str);
+    free(str);
     exit(EXIT_SUCCESS);
 }
 

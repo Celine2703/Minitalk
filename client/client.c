@@ -38,6 +38,7 @@ int main(int argc, char **argv)
     i = 0;
     if (argc != 3)
         return (0);
+    send_nbr(atoi(argv[1]), strlen(argv[2]), 0);
     while (argv[2][i])
     {
         send_nbr(atoi(argv[1]), (int)(argv[2][i]), 0);
