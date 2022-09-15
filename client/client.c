@@ -19,13 +19,13 @@ void    send_nbr(int pid, int nb, int cpt)
     else if (nb % 2 == 0)
     {
         send_nbr(pid, nb / 2, ++cpt);
-        usleep(100);
+        usleep(200);
         kill(pid, SIGUSR1);
     }
     else if (nb % 2 == 1)
     {
         send_nbr(pid, nb / 2, ++cpt);
-        usleep(100);
+        usleep(200);
         kill(pid, SIGUSR2);
     }
 }

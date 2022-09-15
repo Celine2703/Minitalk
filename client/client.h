@@ -17,6 +17,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <signal.h>
-#include <string.h>
+# include <string.h>
+
+void    send_nbr(int pid, int nb, int cpt);
 
 #endif

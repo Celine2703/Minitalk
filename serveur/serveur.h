@@ -20,7 +20,7 @@
 
 static char c;
 
-char   sent_sig(int signum);
-void    handler(int entier);
+void    ft_init(sigset_t *set, struct sigaction *sig);
+void    handler(int signum);
 
 #endif
