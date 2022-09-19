@@ -39,15 +39,7 @@ int main ()
     int cpt;
     printf("PID = %u\n\n",getpid());
     ft_init(&set, &sig);
-    c = 0;
-    nb = 8;
-    while (nb--)
-    {
-        sigaction(SIGUSR1, &sig, NULL);
-        sigaction(SIGUSR2, &sig, NULL);
-        pause();
-    }
-    printf("%i\n\n", (unsigned char)c);
+    c = 1;
     //str = malloc(sizeof(char) * ((unsigned char)c + 1));
     cpt = 0;
     while (c)
