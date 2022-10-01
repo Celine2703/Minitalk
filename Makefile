@@ -16,15 +16,15 @@ HEADSERVEUR = SERVEUR/serveur.h
 
 HEADCLIENT = CLIENT/client.h
 
-all: $(NAMES)
+all: $(NAMES) $(NAMEC)
 
 $(NAMES): $(OBJSSERVEUR) $(HEADSERVEUR)
 	make -C ./Libft
-	$(CC) $(SRCSSERVEUR) -Iincludes ./Libft/libft.a -o $@
+	$(CC) $(SRCSSERVEUR) ./Libft/libft.a -o $@
 
 $(NAMEC): $(OBJSCLIENT) $(HEADCLIENT)
 	make -C ./Libft
-	$(CC) $(SRCSCLIENT) -Iincludes ./Libft/libft.a -o $@
+	$(CC) $(SRCSCLIENT) ./Libft/libft.a -o $@
 
 clean:
 	make -C ./Libft clean
@@ -34,6 +34,7 @@ clean:
 fclean: clean
 	rm -f ./Libft/libft.a
 	rm -f $(NAMES)
+	rm -f $(NAMEC)
 
 re: fclean
 	make all
