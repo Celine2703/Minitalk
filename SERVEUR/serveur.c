@@ -11,12 +11,11 @@
 /* ************************************************************************** */
 
 #include "serveur.h"
+#include "../Libft/libft.h"
 
 void    ft_init(sigset_t *set, struct sigaction *sig)
 {
     sigemptyset(set);
-    sigaddset(set, SIGUSR1);
-    sigaddset(set, SIGUSR1);
     sig ->sa_handler = handler;
     sig ->sa_flags = 0;
     sig ->sa_mask = *set;
@@ -28,20 +27,48 @@ void    handler(int signum)
         c = 2 * c + 0;
     else if (signum == SIGUSR2)
         c = 2 * c + 1;
+    //printf("coucou\n\n");
+}
+
+char	*ft_strjoin_char(char const *s1, char s2)
+{
+	int		i;
+	char	*final;
+	int		taille;
+
+	if (!s1)
+    {
+        final = malloc(sizeof(char) * (1 + 1));
+        final[0] = s2;
+        final[1] = '\0';
+		return (final);
+    }
+    taille = ft_strlen(s1) + 1;
+	final = malloc(sizeof(char) * (taille + 1));
+	if (final == 0)
+		return (0);
+	i = 0;
+	while (s1 && s1[i])
+	{
+		final[i] = s1[i];
+		i++;
+	}
+	final[i++] = s2;
+	final[i] = '\0';
+	return (final);
 }
 
 int main ()
 {
     sigset_t    set;
     struct sigaction    sig;
-    char    str[10000];
+    char    *str;
+    char    *temp;
     int nb;
-    int cpt;
-    printf("PID = %u\n\n",getpid());
+    printf("PID = %u\n",getpid());
     ft_init(&set, &sig);
+    str = NULL;
     c = 1;
-    //str = malloc(sizeof(char) * ((unsigned char)c + 1));
-    cpt = 0;
     while (c)
     {
         c = 0;
@@ -52,9 +79,16 @@ int main ()
             sigaction(SIGUSR2, &sig, NULL);
             pause();
         }
-        str[cpt++] = c;
+        temp = ft_strjoin_char(str, c);
+        free(str);
+        str = NULL;
+        str = temp;
     }
     printf("%s\n", str);
-    //free(str);
+    free(str);
     exit(EXIT_SUCCESS);
 }
+
+// >= 0 & kill(PID, 0) -> val retour a verif 
+//gerer plsr clients (+quitter serveur)
+//ctrl C
