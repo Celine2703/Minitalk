@@ -12,11 +12,12 @@
 
 #ifndef SERVEUR_H
 # define SERVEUR_H
- 
-# include <stdio.h>
+
 # include <unistd.h>
 # include <stdlib.h>
 # include <signal.h>
+
+# include <stdio.h>
 
 static char c;
 

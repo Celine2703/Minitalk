@@ -27,7 +27,8 @@ void    handler(int signum)
         c = 2 * c + 0;
     else if (signum == SIGUSR2)
         c = 2 * c + 1;
-    //printf("coucou\n\n");
+    else if (signum == SIGINT)
+        c = -1;
 }
 
 char	*ft_strjoin_char(char const *s1, char s2)
@@ -71,14 +72,15 @@ int main ()
     {
         str = NULL;
         c = 1;
-        while (c)
+        while (c > 0)
         {
             c = 0;
             nb = 8;
-            while (nb--)
+            while (nb-- && c >= 0)
             {
                 sigaction(SIGUSR1, &sig, NULL);
                 sigaction(SIGUSR2, &sig, NULL);
+                sigaction(SIGINT, &sig, NULL);
                 pause();
             }
             temp = ft_strjoin_char(str, c);
@@ -86,15 +88,11 @@ int main ()
             str = NULL;
             str = temp;
         }
-        printf("%s\n", str);
-        if (!ft_strncmp(str, "EXIT", 5))
-        {
-            free(str);
-            exit(EXIT_SUCCESS);
-        }
+        if (c == -1 || !ft_strncmp(str, "EXIT", 5))
+            return (free(str), 0);
+        ft_putstr_fd(str, 1);
         free(str);
-        str = NULL;
     }
 }
 
-//ctrl C
+//PRINTF!
