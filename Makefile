@@ -8,7 +8,7 @@ OBJSCLIENT = $(SRCSCLIENT:%.c=%.o)
 
 CC   = gcc -g3 -Wall -Wextra -Werror
 
-NAMES = serveur
+NAMES = server
 
 NAMEC = client
 

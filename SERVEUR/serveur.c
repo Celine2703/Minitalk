@@ -67,28 +67,35 @@ int main ()
     int nb;
     printf("PID = %u\n",getpid());
     ft_init(&set, &sig);
-    str = NULL;
-    c = 1;
-    while (c)
+    while (1)
     {
-        c = 0;
-        nb = 8;
-        while (nb--)
+        str = NULL;
+        c = 1;
+        while (c)
         {
-            sigaction(SIGUSR1, &sig, NULL);
-            sigaction(SIGUSR2, &sig, NULL);
-            pause();
+            c = 0;
+            nb = 8;
+            while (nb--)
+            {
+                sigaction(SIGUSR1, &sig, NULL);
+                sigaction(SIGUSR2, &sig, NULL);
+                pause();
+            }
+            temp = ft_strjoin_char(str, c);
+            free(str);
+            str = NULL;
+            str = temp;
         }
-        temp = ft_strjoin_char(str, c);
+        printf("%s\n", str);
+        if (ft_strncmp(str, "EXIT", 5))
+        {
+            free(str);
+            exit(EXIT_SUCCESS);
+        }
         free(str);
         str = NULL;
-        str = temp;
     }
-    printf("%s\n", str);
-    free(str);
-    exit(EXIT_SUCCESS);
 }
-
-// >= 0 & kill(PID, 0) -> val retour a verif 
+ 
 //gerer plsr clients (+quitter serveur)
 //ctrl C

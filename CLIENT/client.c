@@ -33,14 +33,16 @@ void    send_nbr(int pid, int nb, int cpt)
 int main(int argc, char **argv)
 {
     int i;
+    long int pid;
 
     i = 0;
-    if (argc != 3)
+    pid = atoi(argv[1]);
+    if (argc != 3 || pid <= 0 || pid > INT_MAX || kill(pid, 0) == -1)
         return (0);
     while (argv[2][i])
     {
-        send_nbr(atoi(argv[1]), (int)(argv[2][i]), 0);
+        send_nbr(pid, (int)(argv[2][i]), 0);
         i++;
     }
-    send_nbr(atoi(argv[1]), (int)(argv[2][i]), 0);
+    send_nbr(pid, (int)(argv[2][i]), 0);
 }
