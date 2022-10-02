@@ -87,7 +87,7 @@ int main ()
             str = temp;
         }
         printf("%s\n", str);
-        if (ft_strncmp(str, "EXIT", 5))
+        if (!ft_strncmp(str, "EXIT", 5))
         {
             free(str);
             exit(EXIT_SUCCESS);
@@ -96,6 +96,5 @@ int main ()
         str = NULL;
     }
 }
- 
-//gerer plsr clients (+quitter serveur)
+
 //ctrl C
