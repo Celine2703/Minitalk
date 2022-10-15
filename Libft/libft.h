@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmartin- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cmartin- <cmartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:16:53 by cmartin-          #+#    #+#             */
-/*   Updated: 2022/05/03 11:16:55 by cmartin-         ###   ########.fr       */
+/*   Updated: 2022/10/15 18:39:14 by cmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include "./Printf/ft_printf.h"
 
 typedef struct s_list
 {

@@ -3,32 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   serveur.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: celine <celine@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cmartin- <cmartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 16:58:07 by molich            #+#    #+#             */
-/*   Updated: 2022/09/12 18:37:49 by celine           ###   ########.fr       */
+/*   Updated: 2022/10/15 18:29:36 by cmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serveur.h"
 #include "../Libft/libft.h"
 
-void    ft_init(sigset_t *set, struct sigaction *sig)
+void	ft_init(struct sigaction *sig)
 {
-    sigemptyset(set);
-    sig ->sa_handler = handler;
-    sig ->sa_flags = 0;
-    sig ->sa_mask = *set;
+	sigemptyset(&sig->sa_mask);
+	sig ->sa_handler = handler;
+	sig ->sa_flags = 0;
 }
 
-void    handler(int signum)
+void	handler(int signum)
 {
-    if (signum == SIGUSR1)
-        c = 2 * c + 0;
-    else if (signum == SIGUSR2)
-        c = 2 * c + 1;
-    else if (signum == SIGINT)
-        c = -1;
+	if (signum == SIGUSR1)
+		g_c = 2 * g_c + 0;
+	else if (signum == SIGUSR2)
+		g_c = 2 * g_c + 1;
+	else if (signum == SIGINT)
+		g_c = -1;
 }
 
 char	*ft_strjoin_char(char const *s1, char s2)
@@ -38,13 +37,13 @@ char	*ft_strjoin_char(char const *s1, char s2)
 	int		taille;
 
 	if (!s1)
-    {
-        final = malloc(sizeof(char) * (1 + 1));
-        final[0] = s2;
-        final[1] = '\0';
+	{
+		final = malloc(sizeof(char) * (1 + 1));
+		final[0] = s2;
+		final[1] = '\0';
 		return (final);
-    }
-    taille = ft_strlen(s1) + 1;
+	}
+	taille = ft_strlen(s1) + 1;
 	final = malloc(sizeof(char) * (taille + 1));
 	if (final == 0)
 		return (0);
@@ -61,38 +60,34 @@ char	*ft_strjoin_char(char const *s1, char s2)
 
 int main ()
 {
-    sigset_t    set;
-    struct sigaction    sig;
-    char    *str;
-    char    *temp;
-    int nb;
-    printf("PID = %u\n",getpid());
-    ft_init(&set, &sig);
-    while (1)
-    {
-        str = NULL;
-        c = 1;
-        while (c > 0)
-        {
-            c = 0;
-            nb = 8;
-            while (nb-- && c >= 0)
-            {
-                sigaction(SIGUSR1, &sig, NULL);
-                sigaction(SIGUSR2, &sig, NULL);
-                sigaction(SIGINT, &sig, NULL);
-                pause();
-            }
-            temp = ft_strjoin_char(str, c);
-            free(str);
-            str = NULL;
-            str = temp;
-        }
-        if (c == -1 || !ft_strncmp(str, "EXIT", 5))
-            return (free(str), 0);
-        ft_putstr_fd(str, 1);
-        free(str);
-    }
-}
+	struct sigaction	sig;
+	char				*str;
+	char				*temp;
+	int					nb;
 
-//PRINTF!
+	ft_printf("PID = %u\n", getpid());
+	ft_init(&sig);
+	sigaction(SIGUSR1, &sig, NULL);
+	sigaction(SIGUSR2, &sig, NULL);
+	sigaction(SIGINT, &sig, NULL);
+	while (1)
+	{
+		str = NULL;
+		g_c = 1;
+		while (g_c > 0)
+		{
+			g_c = 0;
+			nb = 8;
+			while (nb-- && g_c >= 0)
+				pause();
+			temp = ft_strjoin_char(str, g_c);
+			free(str);
+			str = NULL;
+			str = temp;
+		}
+		if (g_c == -1 || !ft_strncmp(str, "EXIT", 5))
+			return (free(str), 0);
+		ft_putendl_fd(str, 1);
+		free(str);
+	}
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   serveur.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: celine <celine@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cmartin- <cmartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 17:03:17 by molich            #+#    #+#             */
-/*   Updated: 2022/09/11 12:34:08 by celine           ###   ########.fr       */
+/*   Updated: 2022/10/15 18:39:37 by cmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <signal.h>
+# include "../Libft/libft.h"
 
-# include <stdio.h>
+static char	g_c;
 
-static char c;
-
-void    ft_init(sigset_t *set, struct sigaction *sig);
-void    handler(int signum);
+void	ft_init(struct sigaction *sig);
+void	handler(int signum);
 
 #endif
