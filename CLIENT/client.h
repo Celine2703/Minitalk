@@ -6,7 +6,7 @@
 /*   By: cmartin- <cmartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 17:03:17 by molich            #+#    #+#             */
-/*   Updated: 2022/10/15 18:33:06 by cmartin-         ###   ########.fr       */
+/*   Updated: 2022/10/29 14:43:37 by cmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <limits.h>
 # include "../Libft/libft.h"
 
+void	handler(int sig, siginfo_t *siginfo, void *context);
 void	send_nbr(int pid, int nb, int cpt);
 
 #endif

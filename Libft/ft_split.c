@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmartin- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cmartin- <cmartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 11:03:21 by cmartin-          #+#    #+#             */
-/*   Updated: 2022/05/09 10:05:20 by cmartin-         ###   ########.fr       */
+/*   Updated: 2022/10/29 11:19:20 by cmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	ft_clear(char **str, int j)
 	str = 0;
 }
 
-static void	ft_put_inside(char **final, const char *str, char s, int i)
+static int	ft_put_inside(char **final, const char *str, char s, int i)
 {
 	int	j;
 	int	cpt;
@@ -78,7 +78,7 @@ static void	ft_put_inside(char **final, const char *str, char s, int i)
 			if (!final[j])
 			{
 				ft_clear(final, j);
-				return ;
+				return (1);
 			}
 			while (str[i] && (str[i] != s))
 				final[j][c++] = str[i++];
@@ -87,6 +87,7 @@ static void	ft_put_inside(char **final, const char *str, char s, int i)
 		if (str[i])
 			i++;
 	}
+	return (0);
 }
 
 char	**ft_split(char const *str, char const c)
@@ -97,12 +98,10 @@ char	**ft_split(char const *str, char const c)
 	if (!str)
 		return (0);
 	nbmot = ft_count(str, c, 0);
-	final = malloc(sizeof(char *) * (nbmot + 1));
+	final = ft_calloc(sizeof(char *), nbmot + 1);
 	if (!final)
 		return (0);
-	ft_put_inside(final, str, c, 0);
-	if (!final)
+	if (ft_put_inside(final, str, c, 0))
 		return (0);
-	final[nbmot] = 0;
 	return (final);
 }

@@ -6,28 +6,33 @@
 /*   By: cmartin- <cmartin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 16:58:07 by molich            #+#    #+#             */
-/*   Updated: 2022/10/15 18:29:36 by cmartin-         ###   ########.fr       */
+/*   Updated: 2022/10/29 14:49:03 by cmartin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "serveur.h"
 #include "../Libft/libft.h"
 
-void	ft_init(struct sigaction *sig)
+void	ft_init(void)
 {
-	sigemptyset(&sig->sa_mask);
-	sig ->sa_handler = handler;
-	sig ->sa_flags = 0;
+	struct sigaction	sig;
+
+	sigemptyset(&(sig.sa_mask));
+	sig.sa_sigaction = handler;
+	sig.sa_flags = SA_SIGINFO;
+	sigaction(SIGUSR1, &sig, NULL);
+	sigaction(SIGUSR2, &sig, NULL);
 }
 
-void	handler(int signum)
+void	handler(int signum, siginfo_t *info, void *ucontext)
 {
+	(void)ucontext;
 	if (signum == SIGUSR1)
 		g_c = 2 * g_c + 0;
 	else if (signum == SIGUSR2)
 		g_c = 2 * g_c + 1;
-	else if (signum == SIGINT)
-		g_c = -1;
+	usleep(150);
+	kill(info->si_pid, SIGUSR1);
 }
 
 char	*ft_strjoin_char(char const *s1, char s2)
@@ -58,18 +63,14 @@ char	*ft_strjoin_char(char const *s1, char s2)
 	return (final);
 }
 
-int main ()
+int	main(void)
 {
-	struct sigaction	sig;
 	char				*str;
 	char				*temp;
 	int					nb;
 
 	ft_printf("PID = %u\n", getpid());
-	ft_init(&sig);
-	sigaction(SIGUSR1, &sig, NULL);
-	sigaction(SIGUSR2, &sig, NULL);
-	sigaction(SIGINT, &sig, NULL);
+	ft_init();
 	while (1)
 	{
 		str = NULL;
@@ -82,7 +83,6 @@ int main ()
 				pause();
 			temp = ft_strjoin_char(str, g_c);
 			free(str);
-			str = NULL;
 			str = temp;
 		}
 		if (g_c == -1 || !ft_strncmp(str, "EXIT", 5))
