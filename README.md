@@ -10,7 +10,7 @@ First, run the server program
 
     ./sever
     
-The PID of this program will be display. You can then run the client program
+The PID of this program will be displayed. You can then run the client program
 
     ./client PID_of_server " string i want to send to the server"
    
