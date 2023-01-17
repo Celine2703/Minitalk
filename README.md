@@ -16,4 +16,5 @@ The PID of this program will be display. You can then run the client program
    
 The string will be displayed by the client.
 You can run the client program as many times as you want.
+
 If you want to exit it properly, send the string "EXIT" to the server through the client.
